@@ -71,7 +71,6 @@ class TestInMemoryRAGInterface:
         """Two interfaces with the same model should share the cached embeddings."""
         from pluto.rag.rag_interface import _EMBEDDINGS_CACHE, InMemoryRAGInterface
         mock_init.return_value = _mock_rag_system()
-        model = "sentence-transformers/all-mpnet-base-v2"
         _EMBEDDINGS_CACHE.clear()
 
         iface1 = InMemoryRAGInterface(_make_config())

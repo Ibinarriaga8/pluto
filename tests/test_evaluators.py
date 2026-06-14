@@ -165,7 +165,7 @@ class TestRAGMABEvaluatorBanditLogic:
     def test_build_heatmap_shape(self):
         ev = self._make_evaluator()
         # Force known values
-        for i, action in enumerate(ACTION_SPACE):
+        for i, _action in enumerate(ACTION_SPACE):
             ev.counts[i] = 1
             ev.values[i] = float(i) * 0.1
         heatmap = ev._build_heatmap_from_values()
@@ -201,7 +201,6 @@ class TestRAGMABEvaluatorBanditLogic:
             ev.t += 1
         # Don't pull arm 1 at all — it gets mandatory pull via initialization
         ev.counts[1] = 0  # force zero for the test
-        bonus_0 = ev.alpha * np.sqrt(np.log(ev.t + 1) / ev.counts[0])
         # Arm 1 has 0 counts so it will be selected via initialization path
         arm = ev._select_arm()
         assert arm == 1  # mandatory initialization pull

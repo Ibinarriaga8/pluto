@@ -52,7 +52,7 @@ def _make_cluster_result(n_questions=6, n_clusters=2):
     labels = np.array([i % n_clusters for i in range(n_questions)])
     questions = [f"Q{i}" for i in range(n_questions)]
     cluster_to_questions = {
-        c: [q for q, l in zip(questions, labels) if l == c]
+        c: [q for q, label in zip(questions, labels, strict=False) if label == c]
         for c in range(n_clusters)
     }
     return QuestionClusterResult(
