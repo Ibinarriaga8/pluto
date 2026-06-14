@@ -2,7 +2,7 @@
 
 > **RAG hyperparameter optimisation with Multi-Armed Bandits** — a Python library that uses UCB bandits and agglomerative question clustering to find the best Retrieval-Augmented Generation configuration for each question cluster, without expensive grid search.
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)](./pyproject.toml)
+[![Version](https://img.shields.io/badge/version-0.1.1-blue)](./pyproject.toml)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](./pyproject.toml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](./LICENSE)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
