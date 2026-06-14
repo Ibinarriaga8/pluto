@@ -35,8 +35,8 @@ dependencies = [
 dev = ["pytest>=7.4.0", "ruff>=0.4.0"]
 
 [project.scripts]
-mercury-train = "pluto.pipelines.training_pipeline:main"
-mercury-ask   = "pluto.pipelines.online_pipeline:main"
+pluto-train = "pluto.pipelines.training_pipeline:main"
+pluto-ask   = "pluto.pipelines.online_pipeline:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

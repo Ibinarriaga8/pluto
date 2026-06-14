@@ -20,8 +20,8 @@ See the main [README](../README.md) for a project overview.
 After `pip install -e .`:
 
 ```sh
-mercury-train --help   # offline training pipeline
-mercury-ask --question "..." --artifact-path artifacts/...pkl
+pluto-train --help   # offline training pipeline
+pluto-ask --question "..." --artifact-path artifacts/...pkl
 ```
 
 ## Modules

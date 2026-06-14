@@ -57,15 +57,15 @@ Instead of running an expensive brute-force grid search, it uses:
 
 ```
 pluto/
-├── src/pluto/          # Installable Python package
+├── src/pluto/               # Installable Python package
 │   ├── rag/                 # RAG pipeline
 │   │   ├── config.py        #   RAGConfig, LLMProvider
 │   │   ├── rag.py           #   ChromaRAG end-to-end pipeline
 │   │   ├── rag_interface.py #   ChromaRAGInterface (low-level)
 │   │   ├── llm_loader.py    #   LLM factory (Ollama / Groq)
 │   │   └── utils.py         #   Prompt templates, helpers
-│   ├── rl/                  # Reinforcement-learning layer
-│   │   └── rl.py            #   PPOConfig, RLPipeline, RagAction, reward scorers
+│   ├── rl/                  # Action space and reward scorers
+│   │   └── rl.py            #   RagAction, DatasetRewardScorer, HumanRewardScorer
 │   ├── clustering/          # Question clustering
 │   │   ├── clusters.py      #   AgglomerativeQuestionClusterer
 │   │   ├── embeders.py      #   QuestionEmbedder
@@ -76,18 +76,18 @@ pluto/
 │   │   ├── experiment.py    #   ExperimentRunner
 │   │   ├── datasets.py      #   SquadV2Loader
 │   │   └── viz.py           #   RewardHeatMap, plot_time_comparison
-│   └── selection/           # Configuration selection
-│       ├── config_selector.py   # BaseSelector, MABSelector, SelectionResult
-│       ├── config_predictor.py  # ClusterConfigPredictor, RoutedSelection
-│       └── selection_pipeline.py # ClusterSelectionPipeline, PipelineResult
-├── api/                     # HTTP API scaffolding (FastAPI)
-├── services/                # Business-logic services (RAGService)
+│   ├── selection/           # Configuration selection
+│   │   ├── config_selector.py    # BaseSelector, MABSelector, SelectionResult
+│   │   ├── config_predictor.py   # ClusterConfigPredictor, RoutedSelection
+│   │   └── selection_pipeline.py # ClusterSelectionPipeline, PipelineResult
+│   └── pipelines/           # End-to-end entry points
+│       ├── training_pipeline.py  # pluto-train (offline MAB training)
+│       └── online_pipeline.py    # pluto-ask  (inference from artifact)
 ├── scripts/                 # Runnable experiment scripts
 ├── notebooks/               # Jupyter notebooks
 ├── tests/                   # pytest test suite
-├── evaluation/              # Saved evaluation artefacts
-├── artifacts/               # General output artefacts
-└── docs/                    # Documentation assets
+├── artifacts/               # Saved pipeline artifacts (.pkl)
+└── docs/                    # Documentation
 ```
 
 ---
