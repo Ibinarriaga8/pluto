@@ -5,8 +5,17 @@ import abc
 import logging
 import os
 
-from langchain_classic import hub
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_huggingface import HuggingFaceEmbeddings
+
+_DEFAULT_RAG_PROMPT = ChatPromptTemplate.from_messages([
+    ("human", (
+        "You are an assistant for question-answering tasks. Use the following pieces of "
+        "retrieved context to answer the question. If you don't know the answer, just say "
+        "that you don't know. Use three sentences maximum and keep the answer concise.\n"
+        "Question: {question}\nContext: {context}\nAnswer:"
+    )),
+])
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # own modules
@@ -65,7 +74,7 @@ class InMemoryRAGInterface(BaseRAGInterface):
             chunk_overlap=self.config.chunk_overlap,
         )
 
-        prompt = self.config.custom_prompt_template or hub.pull(self.config.prompt_hub_path)
+        prompt = self.config.custom_prompt_template or _DEFAULT_RAG_PROMPT
         loader = ConfigurableLoader(urls=self.config.urls, texts=self.config.texts)
 
         indexer = InMemoryIndexer(embeddings_model=self.embeddings, text_splitter=splitter)
@@ -90,7 +99,7 @@ class ChromaRAGInterface(BaseRAGInterface):
             chunk_overlap=self.config.chunk_overlap,
         )
 
-        prompt = self.config.custom_prompt_template or hub.pull(self.config.prompt_hub_path)
+        prompt = self.config.custom_prompt_template or _DEFAULT_RAG_PROMPT
         loader = ConfigurableLoader(urls=self.config.urls, texts=self.config.texts)
 
         indexer = ChromaIndexer(
