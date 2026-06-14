@@ -9,6 +9,7 @@ import sys
 from unittest.mock import MagicMock
 
 import numpy as np
+from langchain_core.messages import AIMessage
 import pandas as pd
 import pytest
 
@@ -70,7 +71,9 @@ sys.modules["langchain_classic.hub"] = _hub_stub
 # ─────────────────────────────────────────────────────────────────────────────
 def _make_ollama_instance(**kwargs):
     instance = MagicMock()
-    instance.invoke.return_value = MagicMock(content="mocked ollama answer")
+    _ollama_reply = AIMessage(content="mocked ollama answer")
+    instance.invoke.return_value = _ollama_reply
+    instance.return_value = _ollama_reply
     instance.model = kwargs.get("model", "llama3.1:8b")
     instance.temperature = kwargs.get("temperature", 0.0)
     instance.top_k = kwargs.get("top_k", None)
@@ -85,7 +88,9 @@ sys.modules["langchain_ollama"] = _lo_mod
 
 def _make_groq_instance(**kwargs):
     instance = MagicMock()
-    instance.invoke.return_value = MagicMock(content="mocked groq answer")
+    _groq_reply = AIMessage(content="mocked groq answer")
+    instance.invoke.return_value = _groq_reply
+    instance.return_value = _groq_reply
     instance.model = kwargs.get("model", "llama-3.1-8b-instant")
     instance.temperature = kwargs.get("temperature", 0.0)
     return instance
