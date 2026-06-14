@@ -7,6 +7,24 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.1.1] — 2026-06-14
+
+### Fixed
+- Renamed package and all internal references from `mercury-rl` / `mercury_rl` to `pluto`
+- Corrected CI workflow branch triggers from `master`/`develop` to `main`
+- Removed `test_llm_load.py` (made real Ollama calls without mocking, would break CI)
+- Fixed entry points: `mercury-train` / `mercury-ask` → `pluto-train` / `pluto-ask`
+- Fixed repository structure in README (removed non-existent `api/`, `services/`, `evaluation/`; added `pipelines/`)
+- Removed stale `configs/default.yaml` and all references to it
+- Fixed 9 ruff lint errors across the test suite
+
+### Changed
+- Removed PPO references throughout docs and code — the library uses UCB Multi-Armed Bandits, not policy-gradient RL
+- Updated `pyproject.toml` with full PyPI metadata (authors, keywords, classifiers, URLs) and distribution name `pluto-mab`
+- Added `publish.yml` GitHub Actions workflow for automated PyPI releases via Trusted Publishing
+
+---
+
 ## [0.1.0] — 2026-06-14
 
 ### Added

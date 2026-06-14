@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pluto-mab"
-version = "0.1.0"
+version = "0.1.1"
 description = "RAG hyperparameter optimisation via Multi-Armed Bandits and question clustering"
 readme = "README.md"
 requires-python = ">=3.10"
