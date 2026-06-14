@@ -3,12 +3,37 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pluto"
+name = "pluto-mab"
 version = "0.1.0"
 description = "RAG hyperparameter optimisation via Multi-Armed Bandits and question clustering"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "Apache-2.0" }
+license = { file = "LICENSE" }
+authors = [
+    { name = "Jorge Ibinarriaga", email = "jorge.ibi.robles@gmail.com" },
+]
+keywords = [
+    "rag",
+    "retrieval-augmented-generation",
+    "multi-armed-bandit",
+    "ucb",
+    "hyperparameter-optimisation",
+    "llm",
+    "question-clustering",
+    "nlp",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 dependencies = [
     "python-dotenv>=1.0.0",
     "langchain>=0.2.0",
@@ -31,8 +56,14 @@ dependencies = [
     "seaborn>=0.12.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/Ibinarriaga8/pluto"
+Repository = "https://github.com/Ibinarriaga8/pluto"
+Changelog = "https://github.com/Ibinarriaga8/pluto/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/Ibinarriaga8/pluto/issues"
+
 [project.optional-dependencies]
-dev = ["pytest>=7.4.0", "ruff>=0.4.0"]
+dev = ["pytest>=7.4.0", "ruff>=0.4.0", "build>=1.0.0", "twine>=5.0.0"]
 
 [project.scripts]
 pluto-train = "pluto.pipelines.training_pipeline:main"
