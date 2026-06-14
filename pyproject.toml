@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pluto"
+version = "0.1.0"
+description = "RAG hyperparameter optimisation via Multi-Armed Bandits and question clustering"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "langchain>=0.2.0",
+    "langchain-community>=0.2.0",
+    "langchain-huggingface>=0.0.3",
+    "langchain-text-splitters>=0.2.0",
+    "langchain-groq>=0.1.5",
+    "sentence-transformers>=2.6.0",
+    "transformers>=4.40.0",
+    "torch>=2.0.0",
+    "numpy>=1.24.0",
+    "scikit-learn>=1.3.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "huggingface-hub>=0.23.0",
+    "chromadb>=0.5.3",
+    "langchain-chroma>=0.1.4",
+    "datasets>=4.4.2",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4.0", "ruff>=0.4.0"]
+
+[project.scripts]
+mercury-train = "pluto.pipelines.training_pipeline:main"
+mercury-ask   = "pluto.pipelines.online_pipeline:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long – handled by formatter
+    "B008",  # do not perform function calls in default arguments
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pluto"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
