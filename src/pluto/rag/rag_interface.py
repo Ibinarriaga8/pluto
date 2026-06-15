@@ -7,15 +7,6 @@ import os
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_huggingface import HuggingFaceEmbeddings
-
-_DEFAULT_RAG_PROMPT = ChatPromptTemplate.from_messages([
-    ("human", (
-        "You are an assistant for question-answering tasks. Use the following pieces of "
-        "retrieved context to answer the question. If you don't know the answer, just say "
-        "that you don't know. Use three sentences maximum and keep the answer concise.\n"
-        "Question: {question}\nContext: {context}\nAnswer:"
-    )),
-])
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # own modules
@@ -30,6 +21,15 @@ from pluto.rag.rag import (
     InMemoryRetriever,
     LangChainGenerator,
 )
+
+_DEFAULT_RAG_PROMPT = ChatPromptTemplate.from_messages([
+    ("human", (
+        "You are an assistant for question-answering tasks. Use the following pieces of "
+        "retrieved context to answer the question. If you don't know the answer, just say "
+        "that you don't know. Use three sentences maximum and keep the answer concise.\n"
+        "Question: {question}\nContext: {context}\nAnswer:"
+    )),
+])
 
 logger = logging.getLogger(__name__)
 

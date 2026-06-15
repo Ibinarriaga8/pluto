@@ -9,9 +9,9 @@ import sys
 from unittest.mock import MagicMock
 
 import numpy as np
-from langchain_core.messages import AIMessage
 import pandas as pd
 import pytest
+from langchain_core.messages import AIMessage
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Constants
